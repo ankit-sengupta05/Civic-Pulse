@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 980" width="1200" height="980" role="img" aria-label="CivicPulse Sight architecture">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#030712"/><stop offset="1" stop-color="#06202b"/></linearGradient>
+<marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#22e5ff"/></marker>
+<pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#22e5ff" stroke-opacity=".06"/></pattern>
+</defs>
+<rect width="1200" height="980" rx="18" fill="url(#bg)"/><rect width="1200" height="980" rx="18" fill="url(#g)"/>
+<text x="600" y="40" text-anchor="middle" font-family="'Courier New',Consolas,monospace" font-size="20" letter-spacing="6" fill="#e6fbff" font-weight="700">CIVICPULSE SIGHT - SYSTEM ARCHITECTURE</text>
+<rect x="30" y="60" width="1140" height="150" rx="14" fill="#22e5ff" fill-opacity=".07" stroke="#22e5ff" stroke-opacity=".6" stroke-dasharray="6 5"/>
+<text x="48" y="84" font-family="'Courier New',Consolas,monospace" font-size="14" letter-spacing="3" fill="#22e5ff" font-weight="700">01 / DATA SOURCES</text>
+<rect x="50" y="100" width="215" height="98" rx="10" fill="#0a2430" stroke="#22e5ff" stroke-opacity=".8"/>
+<rect x="50" y="100" width="6" height="98" rx="3" fill="#22e5ff"/>
+<text x="70" y="126" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">📍 locations.csv</text>
+<text x="70" y="148" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">1,000 road sectors</text>
+<text x="70" y="166" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">zone, road type, condition</text>
+<text x="70" y="184" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">density, school, hospital</text>
+<rect x="280" y="100" width="215" height="98" rx="10" fill="#0a2430" stroke="#22e5ff" stroke-opacity=".8"/>
+<rect x="280" y="100" width="6" height="98" rx="3" fill="#22e5ff"/>
+<text x="300" y="126" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🚨 incidents.csv</text>
+<text x="300" y="148" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">10,000 incident records</text>
+<text x="300" y="166" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">type, severity, injuries</text>
+<text x="300" y="184" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">resolution time, reporter</text>
+<rect x="510" y="100" width="215" height="98" rx="10" fill="#0a2430" stroke="#22e5ff" stroke-opacity=".8"/>
+<rect x="510" y="100" width="6" height="98" rx="3" fill="#22e5ff"/>
+<text x="530" y="126" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">📣 public_complaints.csv</text>
+<text x="530" y="148" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">8,000 citizen complaints</text>
+<text x="530" y="166" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">category, priority, status</text>
+<text x="530" y="184" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">days open</text>
+<rect x="740" y="100" width="415" height="98" rx="10" fill="#0a2430" stroke="#7cf5c4" stroke-opacity=".8"/>
+<rect x="740" y="100" width="6" height="98" rx="3" fill="#7cf5c4"/>
+<text x="760" y="126" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🛰️ Live / open geospatial feeds</text>
+<text x="760" y="148" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">CCTV mesh · OSM roads · traffic (TomTom optional)</text>
+<text x="760" y="166" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">NASA GIBS imagery · GTFS-RT · GBFS · ADS-B · FIRMS</text>
+<line x1="600" y1="210" x2="600" y2="236" stroke="#22e5ff" stroke-width="2.2" marker-end="url(#ar)"/>
+<rect x="30" y="240" width="1140" height="130" rx="14" fill="#ffd166" fill-opacity=".07" stroke="#ffd166" stroke-opacity=".6" stroke-dasharray="6 5"/>
+<text x="48" y="264" font-family="'Courier New',Consolas,monospace" font-size="14" letter-spacing="3" fill="#ffd166" font-weight="700">02 / PREPROCESSING &amp; OUTLIER CONTROL (PYTHON)</text>
+<rect x="50" y="276" width="265" height="82" rx="10" fill="#0a2430" stroke="#ffd166" stroke-opacity=".8"/>
+<rect x="50" y="276" width="6" height="82" rx="3" fill="#ffd166"/>
+<text x="70" y="302" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">⏱️ Censoring</text>
+<text x="70" y="324" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Open tickets carry elapsed</text>
+<text x="70" y="342" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">hours, not fake fix time</text>
+<rect x="330" y="276" width="265" height="82" rx="10" fill="#0a2430" stroke="#ffd166" stroke-opacity=".8"/>
+<rect x="330" y="276" width="6" height="82" rx="3" fill="#ffd166"/>
+<text x="350" y="302" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">✂️ Winsorization</text>
+<text x="350" y="324" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">1st / 99th percentile clip</text>
+<text x="350" y="342" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">avg hours 10-66h → 16-54h</text>
+<rect x="610" y="276" width="265" height="82" rx="10" fill="#0a2430" stroke="#ffd166" stroke-opacity=".8"/>
+<rect x="610" y="276" width="6" height="82" rx="3" fill="#ffd166"/>
+<text x="630" y="302" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">📏 RobustScaler</text>
+<text x="630" y="324" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Median / IQR on skewed</text>
+<text x="630" y="342" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">features (not Gaussian)</text>
+<rect x="890" y="276" width="265" height="82" rx="10" fill="#0a2430" stroke="#ffd166" stroke-opacity=".8"/>
+<rect x="890" y="276" width="6" height="82" rx="3" fill="#ffd166"/>
+<text x="910" y="302" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🧮 Empirical-Bayes shrinkage</text>
+<text x="910" y="324" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Sparse roads pulled to</text>
+<text x="910" y="342" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">their zone mean (k = 3)</text>
+<line x1="600" y1="380" x2="600" y2="406" stroke="#22e5ff" stroke-width="2.2" marker-end="url(#ar)"/>
+<rect x="30" y="410" width="1140" height="170" rx="14" fill="#ff2e88" fill-opacity=".07" stroke="#ff2e88" stroke-opacity=".6" stroke-dasharray="6 5"/>
+<text x="48" y="434" font-family="'Courier New',Consolas,monospace" font-size="14" letter-spacing="3" fill="#ff2e88" font-weight="700">03 / TRIAGE &amp; ML MODELING (scikit-learn)</text>
+<rect x="50" y="446" width="265" height="122" rx="10" fill="#0a2430" stroke="#ff2e88" stroke-opacity=".8"/>
+<rect x="50" y="446" width="6" height="122" rx="3" fill="#ff2e88"/>
+<text x="70" y="472" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🎯 Policy Priority Score</text>
+<text x="70" y="494" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">6 weighted pillars → 0-100</text>
+<text x="70" y="512" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">severity 30 · backlog 20</text>
+<text x="70" y="530" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">complaints 15 · exposure 15</text>
+<text x="70" y="548" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">injuries 10 · trend 10</text>
+<rect x="330" y="446" width="265" height="122" rx="10" fill="#0a2430" stroke="#ff2e88" stroke-opacity=".8"/>
+<rect x="330" y="446" width="6" height="122" rx="3" fill="#ff2e88"/>
+<text x="350" y="472" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🧠 Surrogate models</text>
+<text x="350" y="494" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Ridge · ElasticNet · Lasso · OLS</text>
+<text x="350" y="512" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">auditable coefficients</text>
+<text x="350" y="530" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">stable under correlation</text>
+<rect x="610" y="446" width="265" height="122" rx="10" fill="#0a2430" stroke="#ff2e88" stroke-opacity=".8"/>
+<rect x="610" y="446" width="6" height="122" rx="3" fill="#ff2e88"/>
+<text x="630" y="472" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🔁 Bootstrap stability</text>
+<text x="630" y="494" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">200 Poisson resamples</text>
+<text x="630" y="512" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">10-90th pct rank interval</text>
+<text x="630" y="530" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">P(site stays in Top 50)</text>
+<rect x="890" y="446" width="265" height="122" rx="10" fill="#0a2430" stroke="#ff2e88" stroke-opacity=".8"/>
+<rect x="890" y="446" width="6" height="122" rx="3" fill="#ff2e88"/>
+<text x="910" y="472" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🌲 Model zoo</text>
+<text x="910" y="494" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Linear · Random Forest</text>
+<text x="910" y="512" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Logistic · Custom hybrid</text>
+<text x="910" y="530" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">spatial ensemble (.joblib)</text>
+<line x1="600" y1="590" x2="600" y2="616" stroke="#22e5ff" stroke-width="2.2" marker-end="url(#ar)"/>
+<rect x="30" y="620" width="1140" height="120" rx="14" fill="#b388ff" fill-opacity=".07" stroke="#b388ff" stroke-opacity=".6" stroke-dasharray="6 5"/>
+<text x="48" y="644" font-family="'Courier New',Consolas,monospace" font-size="14" letter-spacing="3" fill="#b388ff" font-weight="700">04 / EXPORT CONTRACT (STATIC JSON, SERVED BY VITE)</text>
+<rect x="50" y="654" width="265" height="76" rx="10" fill="#0a2430" stroke="#b388ff" stroke-opacity=".8"/>
+<rect x="50" y="654" width="6" height="76" rx="3" fill="#b388ff"/>
+<text x="70" y="680" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">📄 priorities.json</text>
+<text x="70" y="702" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">1,000 scored road sectors</text>
+<rect x="330" y="654" width="265" height="76" rx="10" fill="#0a2430" stroke="#b388ff" stroke-opacity=".8"/>
+<rect x="330" y="654" width="6" height="76" rx="3" fill="#b388ff"/>
+<text x="350" y="680" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">📄 locations.json</text>
+<text x="350" y="702" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">scored locations + context</text>
+<rect x="610" y="654" width="265" height="76" rx="10" fill="#0a2430" stroke="#b388ff" stroke-opacity=".8"/>
+<rect x="610" y="654" width="6" height="76" rx="3" fill="#b388ff"/>
+<text x="630" y="680" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">📄 model_inference.json</text>
+<text x="630" y="702" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">coefficients + inference contract</text>
+<rect x="890" y="654" width="265" height="76" rx="10" fill="#0a2430" stroke="#b388ff" stroke-opacity=".8"/>
+<rect x="890" y="654" width="6" height="76" rx="3" fill="#b388ff"/>
+<text x="910" y="680" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">📄 validation.json</text>
+<text x="910" y="702" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">integrity checks + model metrics</text>
+<line x1="600" y1="750" x2="600" y2="776" stroke="#22e5ff" stroke-width="2.2" marker-end="url(#ar)"/>
+<rect x="30" y="780" width="1140" height="180" rx="14" fill="#7cf5c4" fill-opacity=".07" stroke="#7cf5c4" stroke-opacity=".6" stroke-dasharray="6 5"/>
+<text x="48" y="804" font-family="'Courier New',Consolas,monospace" font-size="14" letter-spacing="3" fill="#7cf5c4" font-weight="700">05 / PRESENTATION (VITE + CESIUMJS + VANILLA JS)</text>
+<rect x="50" y="816" width="265" height="132" rx="10" fill="#0a2430" stroke="#7cf5c4" stroke-opacity=".8"/>
+<rect x="50" y="816" width="6" height="132" rx="3" fill="#7cf5c4"/>
+<text x="70" y="842" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🌍 3D Geospatial Console</text>
+<text x="70" y="864" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">CesiumJS digital twin</text>
+<text x="70" y="882" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">CCTV mesh · traffic · imagery</text>
+<text x="70" y="900" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">fly-to + road telemetry panel</text>
+<rect x="330" y="816" width="265" height="132" rx="10" fill="#0a2430" stroke="#7cf5c4" stroke-opacity=".8"/>
+<rect x="330" y="816" width="6" height="132" rx="3" fill="#7cf5c4"/>
+<text x="350" y="842" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🗂️ Urban Priority Command</text>
+<text x="350" y="864" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Queue · Trends · Plan · Evidence</text>
+<text x="350" y="882" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">filters: zone, confidence, problem</text>
+<text x="350" y="900" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">search by road ID e.g. L0642</text>
+<rect x="610" y="816" width="265" height="132" rx="10" fill="#0a2430" stroke="#7cf5c4" stroke-opacity=".8"/>
+<rect x="610" y="816" width="6" height="132" rx="3" fill="#7cf5c4"/>
+<text x="630" y="842" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🔍 Triage Audit + Arch guide</text>
+<text x="630" y="864" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Data audit · outliers · correlation</text>
+<text x="630" y="882" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">validation + methodology</text>
+<text x="630" y="900" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">judge-friendly transparency</text>
+<rect x="890" y="816" width="265" height="132" rx="10" fill="#0a2430" stroke="#7cf5c4" stroke-opacity=".8"/>
+<rect x="890" y="816" width="6" height="132" rx="3" fill="#7cf5c4"/>
+<text x="910" y="842" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#e6fbff">🛡️ CivicPulse Intel Hub</text>
+<text x="910" y="864" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">Camera dossier HUD</text>
+<text x="910" y="882" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">citizen report modal</text>
+<text x="910" y="900" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="12.5" fill="#9fd8e3">admin console · voice navigation</text>
+</svg>

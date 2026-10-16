@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="CivicPulse Sight banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#030712"/><stop offset="0.55" stop-color="#06202b"/><stop offset="1" stop-color="#0b3a3f"/>
+    </linearGradient>
+    <linearGradient id="ttl" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22e5ff"/><stop offset="1" stop-color="#7cf5c4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#22e5ff" stop-opacity="0.35"/><stop offset="1" stop-color="#22e5ff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#22e5ff" stroke-opacity="0.07"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="320" rx="18" fill="url(#bg)"/>
+  <rect width="1200" height="320" rx="18" fill="url(#grid)"/>
+  <!-- globe -->
+  <g transform="translate(980,160)">
+    <circle r="150" fill="url(#glow)"/>
+    <circle r="96" fill="#04141c" stroke="#22e5ff" stroke-width="2"/>
+    <ellipse rx="96" ry="34" fill="none" stroke="#22e5ff" stroke-opacity=".55"/>
+    <ellipse rx="96" ry="66" fill="none" stroke="#22e5ff" stroke-opacity=".35"/>
+    <ellipse rx="34" ry="96" fill="none" stroke="#22e5ff" stroke-opacity=".55"/>
+    <ellipse rx="66" ry="96" fill="none" stroke="#22e5ff" stroke-opacity=".35"/>
+    <line x1="-96" x2="96" stroke="#22e5ff" stroke-opacity=".45"/>
+    <line y1="-96" y2="96" stroke="#22e5ff" stroke-opacity=".45"/>
+    <circle r="128" fill="none" stroke="#22e5ff" stroke-opacity=".25" stroke-dasharray="3 9">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="40s" repeatCount="indefinite"/>
+    </circle>
+    <!-- incident pings -->
+    <g fill="#ff2e88">
+      <circle cx="-30" cy="-28" r="4"><animate attributeName="r" values="4;11;4" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.2;1" dur="2.2s" repeatCount="indefinite"/></circle>
+      <circle cx="42" cy="14" r="4"><animate attributeName="r" values="4;10;4" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.2;1" dur="2.8s" repeatCount="indefinite"/></circle>
+      <circle cx="-8" cy="52" r="4"><animate attributeName="r" values="4;9;4" dur="3.4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.2;1" dur="3.4s" repeatCount="indefinite"/></circle>
+    </g>
+    <circle cx="-30" cy="-28" r="3" fill="#ffd166"/><circle cx="42" cy="14" r="3" fill="#ffd166"/><circle cx="-8" cy="52" r="3" fill="#ffd166"/>
+  </g>
+  <!-- text -->
+  <text x="60" y="108" font-family="'Courier New',Consolas,monospace" font-size="16" letter-spacing="6" fill="#22e5ff" fill-opacity=".8">URBAN &amp; PLANETARY INTELLIGENCE</text>
+  <text x="58" y="178" font-family="'Courier New',Consolas,monospace" font-size="62" font-weight="700" letter-spacing="8" fill="url(#ttl)">CIVICPULSE</text>
+  <text x="58" y="226" font-family="'Courier New',Consolas,monospace" font-size="40" letter-spacing="22" fill="#e6fbff" fill-opacity=".92">SIGHT</text>
+  <text x="60" y="268" font-family="Segoe UI,Helvetica,Arial,sans-serif" font-size="19" fill="#9fd8e3">Where should we fix first? Explainable road-repair triage + live 3D CCTV console.</text>
+  <!-- chips -->
+  <g font-family="'Courier New',Consolas,monospace" font-size="13" fill="#04141c" font-weight="700">
+    <rect x="60" y="284" width="118" height="22" rx="11" fill="#22e5ff"/><text x="76" y="299">1,000 ROADS</text>
+    <rect x="188" y="284" width="136" height="22" rx="11" fill="#7cf5c4"/><text x="203" y="299">10,000 INCIDENTS</text>
+    <rect x="334" y="284" width="136" height="22" rx="11" fill="#ffd166"/><text x="349" y="299">8,000 COMPLAINTS</text>
+    <rect x="480" y="284" width="104" height="22" rx="11" fill="#ff2e88"/><text x="497" y="299" fill="#fff">20 ZONES</text>
+  </g>
+</svg>
