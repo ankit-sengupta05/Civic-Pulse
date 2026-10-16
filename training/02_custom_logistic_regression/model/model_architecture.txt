@@ -1,0 +1,4 @@
+CIVICPULSE SCRATCH MULTINOMIAL LOGISTIC REGRESSION
+Vectorized Softmax Cross-Entropy with Gradient Descent Optimizer
+Weights Matrix shape: (13, 4)
+Final Cross-Entropy Loss: 0.4825

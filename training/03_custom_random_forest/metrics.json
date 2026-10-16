@@ -1,0 +1,91 @@
+{
+  "model_name": "Custom Random Forest (Bootstrap Bagging Trees from Scratch)",
+  "algorithm": "Random Forest Ensemble with Gini/Variance Splitting & Out-of-Bag Evaluation",
+  "hyperparameters": {
+    "n_estimators": 30,
+    "max_depth": 7,
+    "min_samples_split": 4
+  },
+  "regression_metrics": {
+    "rmse": 4.2743,
+    "mae": 3.4613,
+    "mse": 18.2697,
+    "r2_score": 0.8149
+  },
+  "classification_metrics": {
+    "accuracy": 0.72,
+    "precision_macro": 0.6048,
+    "precision_weighted": 0.6652,
+    "recall_macro": 0.5037,
+    "recall_weighted": 0.72,
+    "f1_macro": 0.5034,
+    "f1_weighted": 0.6671,
+    "per_class": {
+      "Low": {
+        "precision": 1.0,
+        "recall": 0.3,
+        "f1": 0.4615,
+        "support": 20
+      },
+      "Medium": {
+        "precision": 0.7167,
+        "recall": 0.9149,
+        "f1": 0.8037,
+        "support": 94
+      },
+      "High": {
+        "precision": 0.7027,
+        "recall": 0.8,
+        "f1": 0.7482,
+        "support": 65
+      },
+      "Critical": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 21
+      }
+    }
+  },
+  "confusion_matrix": [
+    [
+      6,
+      14,
+      0,
+      0
+    ],
+    [
+      0,
+      86,
+      8,
+      0
+    ],
+    [
+      0,
+      13,
+      52,
+      0
+    ],
+    [
+      0,
+      7,
+      14,
+      0
+    ]
+  ],
+  "feature_importances": {
+    "n_incidents": 0.178,
+    "weighted_severity": 0.3232,
+    "avg_resolution_hrs": 0.099,
+    "total_injuries": 0.0572,
+    "critical_incidents": 0.0812,
+    "n_complaints": 0.0675,
+    "open_complaints": 0.0129,
+    "urgent_complaints": 0.0185,
+    "rc_num": 0.0635,
+    "ped_num": 0.0435,
+    "near_school_num": 0.0242,
+    "near_hospital_num": 0.0159,
+    "pop_density_k": 0.0153
+  }
+}

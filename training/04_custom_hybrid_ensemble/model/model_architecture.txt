@@ -1,0 +1,4 @@
+CIVICPULSE SCRATCH HYBRID SPATIAL ENSEMBLE
+Stacking Formula: S = 0.6*Ridge + 0.3*RF + 0.1*ZoneShrink
+Global Grand Mean Priority: 51.45
+Shrinkage Parameter k: 3.5

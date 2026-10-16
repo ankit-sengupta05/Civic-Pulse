@@ -1,0 +1,54 @@
+[
+  {
+    "model_id": "01_linear_regression",
+    "name": "Custom Ridge Linear Regression",
+    "type": "Pure Scratch Normal Eq (L2)",
+    "accuracy": 0.875,
+    "precision_macro": 0.8951,
+    "recall_macro": 0.757,
+    "f1_macro": 0.7876,
+    "f1_weighted": 0.8578,
+    "rmse": 1.1822,
+    "mae": 0.7707,
+    "r2_score": 0.9858
+  },
+  {
+    "model_id": "02_logistic_regression",
+    "name": "Custom Multinomial Logistic Regression",
+    "type": "Pure Scratch Softmax (GD)",
+    "accuracy": 0.825,
+    "precision_macro": 0.8096,
+    "recall_macro": 0.7579,
+    "f1_macro": 0.7799,
+    "f1_weighted": 0.8226,
+    "rmse": 1.95,
+    "mae": 1.45,
+    "r2_score": 0.942
+  },
+  {
+    "model_id": "03_random_forest",
+    "name": "Custom Random Forest Ensemble",
+    "type": "Pure Scratch Bagging Trees",
+    "accuracy": 0.72,
+    "precision_macro": 0.6048,
+    "recall_macro": 0.5037,
+    "f1_macro": 0.5034,
+    "f1_weighted": 0.6671,
+    "rmse": 4.2743,
+    "mae": 3.4613,
+    "r2_score": 0.8149
+  },
+  {
+    "model_id": "04_hybrid_ensemble",
+    "name": "Custom Hybrid Spatial Ensemble",
+    "type": "Stacking + Empirical Bayes",
+    "accuracy": 0.805,
+    "precision_macro": 0.8973,
+    "recall_macro": 0.619,
+    "f1_macro": 0.6451,
+    "f1_weighted": 0.768,
+    "rmse": 2.4491,
+    "mae": 1.945,
+    "r2_score": 0.9392
+  }
+]

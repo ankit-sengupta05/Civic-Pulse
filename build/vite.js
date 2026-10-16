@@ -94,7 +94,12 @@ export function createBrowserViteConfig({
       // build/allowedHosts.js); IP addresses are always accepted.
       allowedHosts: [...allowedHosts],
       watch: {
-        ignored: ['**/training/**', '**/03_smart_city_where_fix_first/**'],
+        ignored: [
+          '**/training/**',
+          '**/03_smart_city_where_fix_first/**',
+          '**/public/smartcity/data/**',
+          '**/public/smartcity/training_plots/**',
+        ],
       },
       fs: {
         deny: ['.env', '.env.*', '*.{crt,pem}', '**/.git/**', '**/ENVIRONMENT'],

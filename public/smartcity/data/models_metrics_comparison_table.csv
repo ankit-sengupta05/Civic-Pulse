@@ -1,0 +1,5 @@
+model_id,name,type,accuracy,precision_macro,recall_macro,f1_macro,f1_weighted,rmse,mae,r2_score
+01_linear_regression,Custom Ridge Linear Regression,Pure Scratch Normal Eq (L2),0.875,0.8951,0.757,0.7876,0.8578,1.1822,0.7707,0.9858
+02_logistic_regression,Custom Multinomial Logistic Regression,Pure Scratch Softmax (GD),0.825,0.8096,0.7579,0.7799,0.8226,1.95,1.45,0.942
+03_random_forest,Custom Random Forest Ensemble,Pure Scratch Bagging Trees,0.72,0.6048,0.5037,0.5034,0.6671,4.2743,3.4613,0.8149
+04_hybrid_ensemble,Custom Hybrid Spatial Ensemble,Stacking + Empirical Bayes,0.805,0.8973,0.619,0.6451,0.768,2.4491,1.945,0.9392

@@ -1,0 +1,71 @@
+{
+  "model_name": "Custom Logistic Regression (Multi-Class Softmax from Scratch)",
+  "algorithm": "Gradient Descent with Vectorized Softmax & L2 Cross-Entropy Loss",
+  "hyperparameters": {
+    "lr": 0.15,
+    "epochs": 600,
+    "reg_lambda": 0.01
+  },
+  "classification_metrics": {
+    "accuracy": 0.825,
+    "precision_macro": 0.8096,
+    "precision_weighted": 0.8265,
+    "recall_macro": 0.7579,
+    "recall_weighted": 0.825,
+    "f1_macro": 0.7799,
+    "f1_weighted": 0.8226,
+    "per_class": {
+      "Low": {
+        "precision": 0.7222,
+        "recall": 0.65,
+        "f1": 0.6842,
+        "support": 20
+      },
+      "Medium": {
+        "precision": 0.8113,
+        "recall": 0.9149,
+        "f1": 0.86,
+        "support": 94
+      },
+      "High": {
+        "precision": 0.8814,
+        "recall": 0.8,
+        "f1": 0.8387,
+        "support": 65
+      },
+      "Critical": {
+        "precision": 0.8235,
+        "recall": 0.6667,
+        "f1": 0.7368,
+        "support": 21
+      }
+    }
+  },
+  "confusion_matrix": [
+    [
+      13,
+      7,
+      0,
+      0
+    ],
+    [
+      5,
+      86,
+      2,
+      1
+    ],
+    [
+      0,
+      11,
+      52,
+      2
+    ],
+    [
+      0,
+      2,
+      5,
+      14
+    ]
+  ],
+  "final_loss": 0.4825
+}

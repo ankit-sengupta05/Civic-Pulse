@@ -116,13 +116,33 @@ SmartCity/
 │   ├── incidents.csv               # 10,000 incident historical records
 │   └── public_complaints.csv       # 8,000 citizen complaint submissions
 │
-├── training/                       # Data Science & Regularization Pipeline
-│   ├── train_all_models.py         # Multi-Model ML training pipeline (Ridge, RF, Logistic, Custom)
-│   ├── models_comparison_matrix.png# 4-panel executive side-by-side model comparison matrix
-│   ├── linear_regression/          # Linear regression plots & model/linear_regression_model.joblib
-│   ├── random_forest/              # Feature importance, confusion matrix & model/random_forest_model.joblib
-│   ├── logistic_regression/        # ROC curves, confusion matrix & model/logistic_regression_model.joblib
-│   ├── custom_model/               # Hybrid spatial ensemble & model/custom_model.joblib
+├── training/                       # Pure Custom From-Scratch ML & Regularization Pipeline
+│   ├── train_all_models.py         # Autonomous trainer for 4 pure from-scratch custom ML models
+│   ├── preprocess/                 # Clean preprocessed features & train/test splits
+│   │   ├── preprocessed_dataset.csv# Unified feature matrix with engineered indicators
+│   │   ├── features_train.csv      # Training split (800 rows, 80%)
+│   │   └── features_test.csv       # Holdout evaluation test split (200 rows, 20%)
+│   ├── 01_custom_linear_regression/# From-scratch Ridge Normal Equation (L2)
+│   │   ├── model/                  # scratch_linear_regression.joblib & architecture spec
+│   │   ├── metrics.json            # Acc: 87.5%, RMSE: 1.182, R²: 0.9858
+│   │   └── *.png                   # Confusion matrix, pred vs actual, weights
+│   ├── 02_custom_logistic_regression/# From-scratch Softmax Multi-Class Gradient Descent
+│   │   ├── model/                  # scratch_logistic_regression.joblib & architecture spec
+│   │   ├── metrics.json            # Acc: 82.5%, Macro F1: 0.7799
+│   │   └── *.png                   # Confusion matrix, ROC curves, loss history
+│   ├── 03_custom_random_forest/    # From-scratch Bagging Decision Trees Ensemble
+│   │   ├── model/                  # scratch_random_forest.joblib & architecture spec
+│   │   ├── metrics.json            # Acc: 72.0%, RMSE: 4.274, R²: 0.8149
+│   │   └── *.png                   # Feature importance, pred vs actual, confusion matrix
+│   ├── 04_custom_hybrid_ensemble/  # Stacking + Spatial Empirical Bayes Shrinkage
+│   │   ├── model/                  # scratch_hybrid_ensemble.joblib & architecture spec
+│   │   ├── metrics.json            # Acc: 80.5%, RMSE: 2.449, R²: 0.9392
+│   │   └── *.png                   # Zone shrinkage, pred vs actual, confusion matrix
+│   └── 05_models_evaluation_comparison/# Side-by-side matrices & comparison summaries
+│       ├── models_metrics_comparison_table.csv
+│       ├── models_metrics_summary.json
+│       ├── all_models_side_by_side_matrix.png
+│       └── all_models_confusion_matrices.png
 │   ├── build_nb.py                 # Reproducible Python notebook generator script
 │   └── smart_city_analysis.ipynb   # Interactive Jupyter Notebook with Section 9 Multi-Model Comparison
 │

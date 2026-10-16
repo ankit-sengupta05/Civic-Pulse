@@ -1,0 +1,17 @@
+CIVICPULSE SCRATCH RANDOM FOREST
+Ensemble Size: 30 Trees
+Max Depth: 7 | Min Samples Split: 4
+Feature Importance Breakdown:
+  n_incidents: 17.80%
+  weighted_severity: 32.32%
+  avg_resolution_hrs: 9.90%
+  total_injuries: 5.72%
+  critical_incidents: 8.12%
+  n_complaints: 6.75%
+  open_complaints: 1.29%
+  urgent_complaints: 1.85%
+  rc_num: 6.35%
+  ped_num: 4.35%
+  near_school_num: 2.42%
+  near_hospital_num: 1.59%
+  pop_density_k: 1.53%

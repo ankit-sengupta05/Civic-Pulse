@@ -19,8 +19,25 @@
 }
 
 /* --------------------------------------------------------------------------
-   Top Action Buttons in scene-chrome
+   Top Action Bar Container (Fixed independently, ZERO overlap with globe icons)
    -------------------------------------------------------------------------- */
+#cp-top-bar {
+  position: fixed;
+  top: 32px;
+  left: calc(50% + 140px);
+  z-index: 105;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+}
+@media (max-width: 1100px) {
+  #cp-top-bar {
+    top: 76px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 .civicpulse-top-btn {
   display: inline-flex;
   align-items: center;
@@ -684,6 +701,92 @@
   100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.9; }
 }
 
+/* Floating Road Issue Tooltip on Line Hover */
+#cp-road-issue-tooltip {
+  position: fixed;
+  display: none;
+  z-index: 2200;
+  pointer-events: none;
+  background: rgba(10, 16, 28, 0.95);
+  border: 1px solid var(--cp-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 15px rgba(39, 230, 255, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 8px;
+  padding: 12px 14px;
+  width: 300px;
+  color: var(--cp-text);
+  font-family: var(--cp-sans);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  transform: translate(-50%, -115%);
+}
+#cp-road-issue-tooltip.active {
+  display: block;
+}
+.cp-road-tt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.cp-road-tt-title {
+  font: 700 13px var(--cp-mono);
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cp-road-tt-condition {
+  font: 700 9px var(--cp-mono);
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.cp-road-tt-condition.Critical {
+  background: rgba(255, 46, 136, 0.2);
+  border: 1px solid var(--cp-pink);
+  color: var(--cp-pink);
+}
+.cp-road-tt-condition.Poor {
+  background: rgba(255, 176, 46, 0.2);
+  border: 1px solid var(--cp-amber);
+  color: var(--cp-amber);
+}
+.cp-road-tt-condition.Fair {
+  background: rgba(39, 230, 255, 0.2);
+  border: 1px solid var(--cp-cyan);
+  color: var(--cp-cyan);
+}
+.cp-road-tt-condition.Good {
+  background: rgba(56, 242, 138, 0.2);
+  border: 1px solid var(--cp-green);
+  color: var(--cp-green);
+}
+.cp-road-tt-issues {
+  background: rgba(255, 46, 136, 0.1);
+  border: 1px solid rgba(255, 46, 136, 0.3);
+  border-radius: 5px;
+  padding: 6px 8px;
+  margin: 6px 0;
+  font-size: 11px;
+  color: #ff9ec7;
+  line-height: 1.4;
+}
+.cp-road-tt-meta {
+  display: flex;
+  justify-content: space-between;
+  font: 10px var(--cp-mono);
+  color: var(--cp-dim);
+  margin-top: 4px;
+}
+.cp-road-tt-hint {
+  font: 9px var(--cp-mono);
+  color: var(--cp-cyan);
+  text-align: center;
+  margin-top: 6px;
+  opacity: 0.85;
+}
+
 /* Fullscreen Expanded Dossier Modal */
 #cp-full-dossier-modal {
   position: fixed;
@@ -777,10 +880,120 @@
   color: var(--cp-pink);
   border-color: rgba(255, 46, 136, 0.3);
 }
-.cp-top-bar-injected {
-  display: inline-flex;
-  gap: 8px;
-  margin-right: 10px;
-  vertical-align: middle;
+
+/* --------------------------------------------------------------------------
+   Floating Road Line Issue HUD Tooltip (On Line Hover)
+   -------------------------------------------------------------------------- */
+#cp-road-issue-tooltip {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  background: rgba(13, 19, 33, 0.95);
+  border: 1px solid var(--cp-border);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(39, 230, 255, 0.25);
+  border-radius: 8px;
+  padding: 12px 16px;
+  max-width: 420px;
+  min-width: 320px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-family: var(--cp-sans);
+  color: var(--cp-text);
+}
+#cp-road-issue-tooltip.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.cp-road-tooltip-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 6px;
+}
+.cp-road-tooltip-title {
+  font: 700 13px/1.3 var(--cp-mono);
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+.cp-road-tooltip-badge {
+  font: 700 9px var(--cp-mono);
+  padding: 3px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.cp-road-tooltip-badge.Critical {
+  background: rgba(255, 46, 136, 0.25);
+  border: 1px solid var(--cp-pink);
+  color: var(--cp-pink);
+  box-shadow: 0 0 10px rgba(255, 46, 136, 0.3);
+}
+.cp-road-tooltip-badge.Poor,
+.cp-road-tooltip-badge.High {
+  background: rgba(255, 176, 46, 0.25);
+  border: 1px solid var(--cp-amber);
+  color: var(--cp-amber);
+  box-shadow: 0 0 10px rgba(255, 176, 46, 0.3);
+}
+.cp-road-tooltip-badge.Fair,
+.cp-road-tooltip-badge.Medium {
+  background: rgba(39, 230, 255, 0.25);
+  border: 1px solid var(--cp-cyan);
+  color: var(--cp-cyan);
+  box-shadow: 0 0 10px rgba(39, 230, 255, 0.3);
+}
+.cp-road-tooltip-badge.Good,
+.cp-road-tooltip-badge.Low {
+  background: rgba(56, 242, 138, 0.25);
+  border: 1px solid var(--cp-green);
+  color: var(--cp-green);
+  box-shadow: 0 0 10px rgba(56, 242, 138, 0.3);
+}
+.cp-road-tooltip-issue {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #ffe08a;
+  margin-bottom: 8px;
+  background: rgba(255, 176, 46, 0.1);
+  border-left: 3px solid var(--cp-amber);
+  padding: 8px 10px;
+  border-radius: 0 4px 4px 0;
+}
+.cp-road-tooltip-issue.Critical {
+  color: #ffb3cc;
+  border-left-color: var(--cp-pink);
+  background: rgba(255, 46, 136, 0.12);
+}
+.cp-road-tooltip-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  font-size: 11px;
+  font-family: var(--cp-mono);
+  color: var(--cp-dim);
+  margin-bottom: 6px;
+}
+.cp-road-tooltip-meta span b {
+  color: var(--cp-cyan);
+  font-weight: 600;
+}
+.cp-road-tooltip-action {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  font: 10px var(--cp-mono);
+  color: var(--cp-cyan);
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 

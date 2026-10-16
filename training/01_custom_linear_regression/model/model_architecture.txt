@@ -1,0 +1,17 @@
+CIVICPULSE SCRATCH RIDGE REGRESSION
+Algorithm: Closed-Form Normal Equation [w = (X'X + lambda*I)^-1 X'y]
+Features: 13
+Bias: 47.9108
+  n_incidents: +0.5667
+  weighted_severity: +8.8340
+  avg_resolution_hrs: +3.9103
+  total_injuries: +1.4719
+  critical_incidents: -0.2169
+  n_complaints: +4.3334
+  open_complaints: -0.0881
+  urgent_complaints: +0.0372
+  rc_num: +3.2104
+  ped_num: +5.8858
+  near_school_num: +4.5549
+  near_hospital_num: +4.3206
+  pop_density_k: +0.0844

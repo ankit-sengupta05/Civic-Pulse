@@ -1,0 +1,78 @@
+{
+  "model_name": "Custom Hybrid Spatial Stacking Ensemble (From Scratch)",
+  "algorithm": "Ridge Regression + Random Forest + Empirical Bayes Spatial Shrinkage",
+  "hyperparameters": {
+    "alpha_ridge": 0.6,
+    "beta_rf": 0.3,
+    "gamma_spatial": 0.1,
+    "shrink_k": 3.5
+  },
+  "regression_metrics": {
+    "rmse": 2.4491,
+    "mae": 1.945,
+    "mse": 5.9983,
+    "r2_score": 0.9392
+  },
+  "classification_metrics": {
+    "accuracy": 0.805,
+    "precision_macro": 0.8973,
+    "precision_weighted": 0.8351,
+    "recall_macro": 0.619,
+    "recall_weighted": 0.805,
+    "f1_macro": 0.6451,
+    "f1_weighted": 0.768,
+    "per_class": {
+      "Low": {
+        "precision": 1.0,
+        "recall": 0.55,
+        "f1": 0.7097,
+        "support": 20
+      },
+      "Medium": {
+        "precision": 0.7833,
+        "recall": 1.0,
+        "f1": 0.8785,
+        "support": 94
+      },
+      "High": {
+        "precision": 0.806,
+        "recall": 0.8308,
+        "f1": 0.8182,
+        "support": 65
+      },
+      "Critical": {
+        "precision": 1.0,
+        "recall": 0.0952,
+        "f1": 0.1739,
+        "support": 21
+      }
+    }
+  },
+  "confusion_matrix": [
+    [
+      11,
+      9,
+      0,
+      0
+    ],
+    [
+      0,
+      94,
+      0,
+      0
+    ],
+    [
+      0,
+      11,
+      54,
+      0
+    ],
+    [
+      0,
+      6,
+      13,
+      2
+    ]
+  ],
+  "grand_mean": 51.45
+}
