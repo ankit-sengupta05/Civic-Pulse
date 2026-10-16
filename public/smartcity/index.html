@@ -60,24 +60,58 @@ const ACTION={"Pothole":"Road resurfacing crew","Streetlight outage":"Lighting r
 const SAFE=(s)=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let D,T,V,sel=null,viewer,ents={};
 const $=id=>document.getElementById(id);
-const col=s=>{const t=Math.min(1,Math.max(0,(s-30)/65));return Cesium.Color.fromHsl(0.52-0.52*t,1,0.55,0.9)};
+const col=s=>{const t=Math.min(1,Math.max(0,(s-30)/65));return (typeof Cesium!=="undefined"&&Cesium.Color)?Cesium.Color.fromHsl(0.52-0.52*t,1,0.55,0.9):"#27e6ff"};
 async function init(){
- [D,T,V]=await Promise.all(["priorities","trends","validation"].map(n=>fetch(`data/${n}.json`).then(r=>r.json())));
+ const tryFetch = async (n) => {
+   const urls = [`data/${n}.json`, `/smartcity/data/${n}.json`, `../smartcity/data/${n}.json`];
+   for (const u of urls) {
+     try {
+       const r = await fetch(u);
+       if (r.ok) return await r.json();
+     } catch(e) {}
+   }
+   throw new Error("Could not load " + n + ".json");
+ };
+ [D,T,V]=await Promise.all(["priorities","trends","validation"].map(tryFetch));
+
  $("asof").textContent="as of "+D.meta.asof+" · "+D.locations.length+" locations";
  D.meta.zones.map(z=>z.zone).sort().forEach(z=>$("fz").add(new Option(z,z)));
  Object.keys(ACTION).forEach(t=>$("ft").add(new Option(t,t)));
- viewer=new Cesium.Viewer("cesium",{baseLayer:new Cesium.ImageryLayer(new Cesium.OpenStreetMapImageryProvider({url:"https://tile.openstreetmap.org/"})),terrain:undefined,baseLayerPicker:false,geocoder:false,homeButton:false,sceneModePicker:false,navigationHelpButton:false,animation:false,timeline:false,fullscreenButton:false,infoBox:false,selectionIndicator:false});
- viewer.scene.globe.enableLighting=false;viewer.scene.skyAtmosphere.show=true;
- viewer.imageryLayers.get(0).brightness=0.55;viewer.imageryLayers.get(0).saturation=0.5;
- D.locations.forEach(l=>{ents[l.id]=viewer.entities.add({id:l.id,position:Cesium.Cartesian3.fromDegrees(l.lon,l.lat),
-   point:{pixelSize:l.rank<=50?9:5,color:col(l.score),outlineColor:Cesium.Color.BLACK.withAlpha(.6),outlineWidth:1,disableDepthTestDistance:1e7}});
-  if(l.rank<=100)viewer.entities.add({position:Cesium.Cartesian3.fromDegrees(l.lon,l.lat,l.score*7),cylinder:{length:l.score*14,topRadius:60,bottomRadius:60,material:col(l.score).withAlpha(.55)}});});
- viewer.camera.flyTo({destination:Cesium.Cartesian3.fromDegrees(80.53,16.2,60000),orientation:{heading:0,pitch:Cesium.Math.toRadians(-48)},duration:2});
- viewer.screenSpaceEventHandler.setInputAction(c=>{const p=viewer.scene.pick(c.position);if(p&&p.id&&p.id.id&&ents[p.id.id])select(p.id.id,false)},Cesium.ScreenSpaceEventType.LEFT_CLICK);
  ["fz","fc","ft"].forEach(i=>$(i).onchange=renderList);$("fs").oninput=renderList;
- document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#tabs button").forEach(x=>x.classList.toggle("on",x===b));
-  document.querySelectorAll(".pane").forEach(p=>{p.classList.toggle("on",p.id==="p-"+b.dataset.t);p.style.display=p.classList.contains("on")?(p.id==="p-queue"?"flex":"block"):"none"})});
+ document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
+   document.querySelectorAll("#tabs button").forEach(x=>x.classList.toggle("on",x===b));
+   document.querySelectorAll(".pane").forEach(p=>{
+     p.classList.toggle("on",p.id==="p-"+b.dataset.t);
+     p.style.display=p.classList.contains("on")?(p.id==="p-queue"?"flex":"block"):"none";
+   });
+ });
+
+ // Render lists and views immediately
  renderList();renderTrends();renderPlan();renderEvidence();
+
+ // Safely initialize 3D Cesium background
+ try {
+   if (typeof Cesium !== "undefined") {
+     let imagery;
+     if (typeof Cesium.UrlTemplateImageryProvider === "function") {
+       imagery = new Cesium.UrlTemplateImageryProvider({url:"https://tile.openstreetmap.org/{z}/{x}/{y}.png"});
+     }
+     viewer=new Cesium.Viewer("cesium",{baseLayer:imagery?new Cesium.ImageryLayer(imagery):undefined,terrain:undefined,baseLayerPicker:false,geocoder:false,homeButton:false,sceneModePicker:false,navigationHelpButton:false,animation:false,timeline:false,fullscreenButton:false,infoBox:false,selectionIndicator:false});
+     viewer.scene.globe.enableLighting=false;viewer.scene.skyAtmosphere.show=true;
+     if (viewer.imageryLayers && viewer.imageryLayers.length > 0) {
+       viewer.imageryLayers.get(0).brightness=0.55;viewer.imageryLayers.get(0).saturation=0.5;
+     }
+     D.locations.forEach(l=>{
+       ents[l.id]=viewer.entities.add({id:l.id,position:Cesium.Cartesian3.fromDegrees(l.lon,l.lat),
+         point:{pixelSize:l.rank<=50?9:5,color:col(l.score),outlineColor:Cesium.Color.BLACK.withAlpha(.6),outlineWidth:1,disableDepthTestDistance:1e7}});
+       if(l.rank<=100)viewer.entities.add({position:Cesium.Cartesian3.fromDegrees(l.lon,l.lat,l.score*7),cylinder:{length:l.score*14,topRadius:60,bottomRadius:60,material:col(l.score).withAlpha(.55)}});
+     });
+     viewer.camera.flyTo({destination:Cesium.Cartesian3.fromDegrees(80.53,16.2,60000),orientation:{heading:0,pitch:Cesium.Math.toRadians(-48)},duration:2});
+     viewer.screenSpaceEventHandler.setInputAction(c=>{const p=viewer.scene.pick(c.position);if(p&&p.id&&p.id.id&&ents[p.id.id])select(p.id.id,false)},Cesium.ScreenSpaceEventType.LEFT_CLICK);
+   }
+ } catch(cErr) {
+   console.warn("Cesium 3D background init skipped:", cErr);
+ }
 }
 function filtered(){const z=$("fz").value,c=$("fc").value,t=$("ft").value,s=$("fs").value.trim().toUpperCase();
  return D.locations.filter(l=>(!z||l.zone===z)&&(!c||l.conf_label===c)&&(!t||l.top_type===t)&&(!s||l.id.includes(s)))}
